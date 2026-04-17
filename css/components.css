@@ -65,6 +65,15 @@
   height: 64px;
 }
 
+.nav__logo-wolf {
+  height: 30px;
+  width: 30px;
+  object-fit: cover;
+  margin-right: var(--sp-2);
+  mix-blend-mode: screen;
+  flex-shrink: 0;
+}
+
 .nav__logo {
   display: flex;
   align-items: center;
@@ -195,6 +204,19 @@
     linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
   background-size: 72px 72px;
   background-position: -1px -1px;
+}
+
+.hero__wolf-mark {
+  position: absolute;
+  right: -2%;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 80vh;
+  width: auto;
+  opacity: 0.45;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  user-select: none;
 }
 
 .hero__vignette {
@@ -1101,6 +1123,15 @@
   grid-template-columns: 1fr 2fr;
   gap: clamp(var(--sp-10), 8vw, var(--sp-20));
   padding-block: clamp(var(--sp-10), 6vw, var(--sp-16));
+}
+
+.footer__logo-wolf {
+  height: 36px;
+  width: 36px;
+  object-fit: cover;
+  margin-right: var(--sp-2);
+  mix-blend-mode: screen;
+  flex-shrink: 0;
 }
 
 .footer__logo {

@@ -96,6 +96,12 @@
 
   .hero__scroll-cue { display: none; }
 
+  .hero__wolf-mark {
+    height: 55vw;
+    right: -8%;
+    opacity: 0.35;
+  }
+
   /* ── Sections ────────────────────────── */
   .section__title {
     font-size: clamp(var(--text-3xl), 8vw, var(--text-4xl));
