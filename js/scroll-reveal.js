@@ -34,4 +34,17 @@
 
   elements.forEach(el => observer.observe(el));
 
+  // iOS Safari fix: IntersectionObserver doesn't fire for elements
+  // already in the viewport on page load — force-reveal them.
+  setTimeout(() => {
+    elements.forEach(el => {
+      if (el.classList.contains('is-visible')) return;
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        el.classList.add('is-visible');
+        observer.unobserve(el);
+      }
+    });
+  }, 120);
+
 })();

@@ -58,7 +58,6 @@
   .nav__links,
   .nav__cta  { display: none; }
   .nav__burger { display: flex; }
-  .nav__mobile { display: flex; }
 
   .break-mobile { display: inline; }
 
