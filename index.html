@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO -->
+  <title>Signatus — Organización de Esports | Argentina & LATAM</title>
+  <meta name="description" content="Signatus es una organización de esports argentina con foco en Counter-Strike 2 y apertura hacia toda Latinoamérica. Competimos, crecemos y construimos comunidad. #GoSignatus" />
+  <meta name="keywords" content="Signatus, esports Argentina, CS2, Counter-Strike 2, LATAM, Proyecto Jalki, GoSignatus" />
+  <meta name="author" content="Signatus" />
+  <link rel="canonical" href="https://signatusteam.gg/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://signatusteam.gg/" />
+  <meta property="og:title" content="Signatus — Organización de Esports" />
+  <meta property="og:description" content="Organización de esports argentina. CS2, comunidad y apertura para toda LATAM. #GoSignatus" />
+  <meta property="og:image" content="https://signatusteam.gg/assets/og-image.jpg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@SignatusTeam" />
+  <meta name="twitter:title" content="Signatus — Organización de Esports" />
+  <meta name="twitter:description" content="Organización de esports argentina. CS2, comunidad y apertura para toda LATAM. #GoSignatus" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════ CURSOR ═══════════════════════ -->
+  <div class="cursor" id="cursor" aria-hidden="true"></div>
+  <div class="cursor-trail" id="cursorTrail" aria-hidden="true"></div>
+
+  <!-- ═══════════════════════ NAV ═══════════════════════ -->
+  <header class="nav" id="nav" role="banner">
+    <div class="nav__inner container">
+      <a href="#hero" class="nav__logo" aria-label="Signatus — inicio">
+        <span class="nav__logo-mark">S</span>
+        <span class="nav__logo-text">ignatus</span>
+      </a>
+
+      <nav class="nav__links" aria-label="Navegación principal">
+        <a href="#about" class="nav__link">Nosotros</a>
+        <a href="#proposition" class="nav__link">Propuesta</a>
+        <a href="#jalki" class="nav__link">Jalki</a>
+        <a href="#community" class="nav__link">Comunidad</a>
+        <a href="#roadmap" class="nav__link">Roadmap</a>
+        <a href="#faq" class="nav__link">FAQ</a>
+      </nav>
+
+      <a href="#contact" class="btn btn--accent nav__cta">#GoSignatus</a>
+
+      <button class="nav__burger" id="navBurger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div class="nav__mobile" id="mobileMenu" aria-hidden="true">
+      <a href="#about" class="nav__mobile-link">Nosotros</a>
+      <a href="#proposition" class="nav__mobile-link">Propuesta</a>
+      <a href="#jalki" class="nav__mobile-link">Jalki</a>
+      <a href="#community" class="nav__mobile-link">Comunidad</a>
+      <a href="#roadmap" class="nav__mobile-link">Roadmap</a>
+      <a href="#faq" class="nav__mobile-link">FAQ</a>
+      <a href="#contact" class="nav__mobile-link nav__mobile-cta">#GoSignatus</a>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ═══════════════════════ HERO ═══════════════════════ -->
+    <section class="hero" id="hero" aria-label="Sección principal">
+      <div class="hero__bg" aria-hidden="true">
+        <canvas class="hero__canvas" id="heroCanvas"></canvas>
+        <div class="hero__grid"></div>
+        <div class="hero__vignette"></div>
+      </div>
+
+      <div class="container hero__inner">
+        <div class="hero__content">
+          <p class="hero__eyebrow reveal-fade" data-delay="0">
+            <span class="eyebrow__line"></span>
+            Organización de Esports · Fundada 2022
+          </p>
+
+          <h1 class="hero__title reveal-up" data-delay="1">
+            <span class="hero__title-main">SIGNAT</span><span class="hero__title-accent">US</span>
+          </h1>
+
+          <p class="hero__tagline reveal-up" data-delay="2">
+            Argentina compite. LATAM crece. <br class="break-mobile" />El futuro del esport hispanohablante.
+          </p>
+
+          <div class="hero__actions reveal-up" data-delay="3">
+            <a href="#jalki" class="btn btn--accent btn--lg">
+              Proyecto Jalki
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="#about" class="btn btn--ghost btn--lg">Conocé el equipo</a>
+          </div>
+
+          <div class="hero__stats reveal-up" data-delay="4" role="list" aria-label="Datos del equipo">
+            <div class="hero__stat" role="listitem">
+              <span class="hero__stat-value">2022</span>
+              <span class="hero__stat-label">Fundación</span>
+            </div>
+            <div class="hero__stat-divider" aria-hidden="true"></div>
+            <div class="hero__stat" role="listitem">
+              <span class="hero__stat-value">ARG</span>
+              <span class="hero__stat-label">Base</span>
+            </div>
+            <div class="hero__stat-divider" aria-hidden="true"></div>
+            <div class="hero__stat" role="listitem">
+              <span class="hero__stat-value">LATAM</span>
+              <span class="hero__stat-label">Alcance</span>
+            </div>
+            <div class="hero__stat-divider" aria-hidden="true"></div>
+            <div class="hero__stat" role="listitem">
+              <span class="hero__stat-value">CS2</span>
+              <span class="hero__stat-label">Título principal</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__scroll-cue" aria-hidden="true">
+        <span>scroll</span>
+        <div class="hero__scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ TICKER ═══════════════════════ -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker__track" id="tickerTrack">
+        <!-- JS populated -->
+      </div>
+    </div>
+
+    <!-- ═══════════════════════ ABOUT ═══════════════════════ -->
+    <section class="section about" id="about" aria-labelledby="about-heading">
+      <div class="container">
+        <div class="section__header reveal-up">
+          <p class="section__label">Quiénes somos</p>
+          <h2 class="section__title" id="about-heading">Más que<br />un equipo</h2>
+        </div>
+
+        <div class="about__grid">
+          <div class="about__text reveal-up" data-delay="1">
+            <div class="about__badge">
+              <span class="badge__dot"></span>
+              Organización activa desde Feb · 2022
+            </div>
+            <p>
+              <strong>Signatus</strong> nació en diciembre de 2022 con una visión clara: construir
+              una organización de esports con raíces argentinas y proyección latinoamericana.
+              Desde el primer día, apostamos por el talento local y por generar espacios
+              reales de competencia para quienes lo merecen.
+            </p>
+            <p>
+              Nuestro enfoque principal es <strong>Counter-Strike 2</strong>, el FPS competitivo
+              más importante del mundo. Pero Signatus no es solo un roster — es una comunidad
+              que apuesta por la inclusión, la superación y la representación de la región
+              en la escena global.
+            </p>
+            <p>
+              Con iniciativas como <strong>Proyecto Jalki</strong>, abrimos puertas
+              para nuevos perfiles que históricamente quedaron fuera del competitivo.
+              Creemos que los esports son para todos.
+            </p>
+            <a href="mailto:signatusteam@gmail.com" class="btn btn--outline" style="margin-top:1.5rem;">
+              Contactanos
+            </a>
+          </div>
+
+          <div class="about__cards reveal-up" data-delay="2" aria-label="Valores del equipo">
+            <article class="value-card">
+              <div class="value-card__number" aria-hidden="true">01</div>
+              <h3 class="value-card__title">Misión</h3>
+              <p class="value-card__desc">
+                Profesionalizar el talento latinoamericano en esports,
+                brindando estructura, dirección y oportunidades reales
+                de crecimiento competitivo.
+              </p>
+            </article>
+            <article class="value-card">
+              <div class="value-card__number" aria-hidden="true">02</div>
+              <h3 class="value-card__title">Visión</h3>
+              <p class="value-card__desc">
+                Ser la organización de referencia de Argentina y LATAM
+                en Counter-Strike 2, construyendo caminos hacia
+                el competitivo regional e internacional.
+              </p>
+            </article>
+            <article class="value-card">
+              <div class="value-card__number" aria-hidden="true">03</div>
+              <h3 class="value-card__title">Valores</h3>
+              <p class="value-card__desc">
+                Comunidad, inclusión, esfuerzo y alto rendimiento.
+                Convencidos de que la diversidad de perfiles
+                fortalece a cualquier organización.
+              </p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ PROPOSITION ═══════════════════════ -->
+    <section class="section proposition" id="proposition" aria-labelledby="proposition-heading">
+      <div class="container">
+        <div class="section__header reveal-up">
+          <p class="section__label">Qué hacemos</p>
+          <h2 class="section__title" id="proposition-heading">Nuestra<br />propuesta</h2>
+        </div>
+
+        <div class="proposition__grid">
+
+          <article class="prop-card prop-card--featured reveal-up" data-delay="0">
+            <div class="prop-card__tag">Principal</div>
+            <div class="prop-card__icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="1.5"/><path d="M10 16l4 4 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3 class="prop-card__title">Competencia en CS2</h3>
+            <p class="prop-card__desc">
+              Participamos en torneos y ligas de Argentina y LATAM con un roster
+              enfocado en Counter-Strike 2. Nuestro objetivo es escalar en el
+              circuito regional y visibilizar el talento argentino.
+            </p>
+            <ul class="prop-card__list" aria-label="Características">
+              <li>Torneos regionales ARG / LATAM</li>
+              <li>Estructura competitiva seria</li>
+              <li>Formación y desarrollo de jugadores</li>
+            </ul>
+          </article>
+
+          <article class="prop-card reveal-up" data-delay="1">
+            <div class="prop-card__icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M4 8h24M4 16h16M4 24h20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <h3 class="prop-card__title">Comunidad & Contenido</h3>
+            <p class="prop-card__desc">
+              Más allá de la competencia, construimos comunidad. Generamos
+              contenido en redes sociales y creamos espacios de encuentro
+              para fans, jugadores y entusiastas del esport.
+            </p>
+            <ul class="prop-card__list">
+              <li>Redes sociales activas</li>
+              <li>Engagement con la comunidad gamer</li>
+              <li>Voz hispana en el ecosistema CS2</li>
+            </ul>
+          </article>
+
+          <article class="prop-card reveal-up" data-delay="2">
+            <div class="prop-card__icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M16 4C9.373 4 4 9.373 4 16s5.373 12 12 12 12-5.373 12-12S22.627 4 16 4z" stroke="currentColor" stroke-width="1.5"/><path d="M16 8v8l5 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <h3 class="prop-card__title">Inclusión & Diversidad</h3>
+            <p class="prop-card__desc">
+              Creemos en un esport accesible para todos. Con iniciativas como
+              Proyecto Jalki, trabajamos para que grupos históricamente
+              excluidos tengan su lugar en el competitivo.
+            </p>
+            <ul class="prop-card__list">
+              <li>Proyecto Jalki para mujeres en CS2</li>
+              <li>Convocatorias sin experiencia previa</li>
+              <li>Apertura a toda Argentina y LATAM</li>
+            </ul>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ STRENGTHS ═══════════════════════ -->
+    <section class="section strengths" id="strengths" aria-labelledby="strengths-heading">
+      <div class="container">
+        <div class="section__header reveal-up">
+          <p class="section__label">Por qué Signatus</p>
+          <h2 class="section__title" id="strengths-heading">Lo que<br />nos diferencia</h2>
+        </div>
+
+        <div class="strengths__grid">
+          <article class="strength-item reveal-up" data-delay="0">
+            <div class="strength-item__index" aria-hidden="true">01</div>
+            <div class="strength-item__body">
+              <h3>Raíces argentinas, proyección LATAM</h3>
+              <p>Somos una organización con identidad local y alcance regional. Entendemos la cultura gamer de Sudamérica porque somos parte de ella.</p>
+            </div>
+          </article>
+          <article class="strength-item reveal-up" data-delay="1">
+            <div class="strength-item__index" aria-hidden="true">02</div>
+            <div class="strength-item__body">
+              <h3>Enfoque genuino en CS2</h3>
+              <p>No somos una org multijuego dispersa. Nuestro foco en Counter-Strike 2 nos permite invertir todos los recursos en un solo título y hacerlo bien.</p>
+            </div>
+          </article>
+          <article class="strength-item reveal-up" data-delay="2">
+            <div class="strength-item__index" aria-hidden="true">03</div>
+            <div class="strength-item__body">
+              <h3>Comunidad antes que todo</h3>
+              <p>Construimos comunidad real. Nuestros seguidores no son una audiencia pasiva — son parte activa de lo que somos como organización.</p>
+            </div>
+          </article>
+          <article class="strength-item reveal-up" data-delay="3">
+            <div class="strength-item__index" aria-hidden="true">04</div>
+            <div class="strength-item__body">
+              <h3>Iniciativas de impacto social</h3>
+              <p>Proyecto Jalki demuestra que nos importa el "para quién" tanto como el "qué". Abrimos espacios donde antes no los había.</p>
+            </div>
+          </article>
+          <article class="strength-item reveal-up" data-delay="4">
+            <div class="strength-item__index" aria-hidden="true">05</div>
+            <div class="strength-item__body">
+              <h3>Organización ágil y transparente</h3>
+              <p>Contacto directo, comunicación cercana. Sin capas burocráticas: jugadores, managers y comunidad hablan el mismo idioma.</p>
+            </div>
+          </article>
+          <article class="strength-item reveal-up" data-delay="5">
+            <div class="strength-item__index" aria-hidden="true">06</div>
+            <div class="strength-item__body">
+              <h3>Contexto favorable: Buenos Aires Major 2027</h3>
+              <p>Argentina albergará un Major de CS2 en 2027. Estamos posicionados en el epicentro de una escena que está a punto de explotar globalmente.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ PROYECTO JALKI ═══════════════════════ -->
+    <section class="jalki" id="jalki" aria-labelledby="jalki-heading">
+      <div class="jalki__bg" aria-hidden="true"></div>
+      <div class="container jalki__inner">
+        <div class="jalki__text reveal-up">
+          <p class="jalki__label">
+            <span class="jalki__label-line"></span>
+            Iniciativa especial
+          </p>
+          <h2 class="jalki__title" id="jalki-heading">
+            Proyecto<br /><span class="jalki__title-accent">Jalki</span>
+          </h2>
+          <p class="jalki__desc">
+            Una convocatoria abierta para todas las chicas de Argentina y LATAM
+            que quieran competir en Counter-Strike 2, incluso si nunca lo hicieron antes.
+            <strong>Sin experiencia previa. Solo ganas de crecer.</strong>
+          </p>
+          <a href="mailto:signatusteam@gmail.com?subject=Proyecto Jalki — Quiero participar" class="btn btn--dark btn--lg">
+            Quiero participar
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+        <div class="jalki__features reveal-up" data-delay="2" aria-label="Características del Proyecto Jalki">
+          <article class="jalki-feat">
+            <div class="jalki-feat__icon" aria-hidden="true">🌍</div>
+            <div class="jalki-feat__body">
+              <h3>Abierto a toda LATAM</h3>
+              <p>Argentina, Chile, México, Colombia y toda Latinoamérica. Si tenés las ganas, el origen no importa.</p>
+            </div>
+          </article>
+          <article class="jalki-feat">
+            <div class="jalki-feat__icon" aria-hidden="true">🎯</div>
+            <div class="jalki-feat__body">
+              <h3>Sin experiencia requerida</h3>
+              <p>No hace falta historial competitivo. Solo voluntad de aprender y mejorar en CS2.</p>
+            </div>
+          </article>
+          <article class="jalki-feat">
+            <div class="jalki-feat__icon" aria-hidden="true">🏗️</div>
+            <div class="jalki-feat__body">
+              <h3>Estructura real</h3>
+              <p>Respaldo organizacional, coaching y la posibilidad de competir de forma seria y estructurada.</p>
+            </div>
+          </article>
+          <article class="jalki-feat">
+            <div class="jalki-feat__icon" aria-hidden="true">⚡</div>
+            <div class="jalki-feat__body">
+              <h3>Representación genuina</h3>
+              <p>Jalki es nuestra respuesta a la falta de espacios para mujeres en el FPS competitivo. Esto es serio.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ COMMUNITY ═══════════════════════ -->
+    <section class="section community" id="community" aria-labelledby="community-heading">
+      <div class="container">
+        <div class="section__header reveal-up">
+          <p class="section__label">Presencia</p>
+          <h2 class="section__title" id="community-heading">Comunidad<br />& Redes</h2>
+        </div>
+
+        <div class="community__grid">
+          <article class="social-card reveal-up" data-delay="0">
+            <div class="social-card__header">
+              <div class="social-card__platform">Twitter / X</div>
+              <svg class="social-card__icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.261 5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </div>
+            <p class="social-card__desc">
+              La fuente oficial de Signatus. Últimas novedades, resultados,
+              anuncios y la voz del equipo en tiempo real.
+            </p>
+            <div class="social-card__meta">
+              <span class="social-card__handle">@SignatusTeam</span>
+              <span class="social-card__since">Desde Dic 2022</span>
+            </div>
+            <a href="https://x.com/SignatusTeam" class="btn btn--outline social-card__cta" target="_blank" rel="noopener noreferrer">
+              Seguir en X →
+            </a>
+          </article>
+
+          <article class="social-card reveal-up" data-delay="1">
+            <div class="social-card__header">
+              <div class="social-card__platform">Instagram</div>
+              <svg class="social-card__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            </div>
+            <p class="social-card__desc">
+              Fotos, stories y contenido visual de nuestros jugadores
+              y momentos dentro y fuera del servidor.
+            </p>
+            <div class="social-card__meta">
+              <span class="social-card__handle">@signatusteam</span>
+              <span class="social-card__since">Contenido visual</span>
+            </div>
+            <a href="https://instagram.com/signatusteam" class="btn btn--outline social-card__cta" target="_blank" rel="noopener noreferrer">
+              Ver Instagram →
+            </a>
+          </article>
+
+          <article class="social-card reveal-up" data-delay="2">
+            <div class="social-card__header">
+              <div class="social-card__platform">Email directo</div>
+              <svg class="social-card__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 8l10 6 10-6"/></svg>
+            </div>
+            <p class="social-card__desc">
+              ¿Propuestas, sponsors o simplemente querés hablar con el equipo?
+              Nuestro canal de contacto directo siempre está abierto.
+            </p>
+            <div class="social-card__meta">
+              <span class="social-card__handle">signatusteam@gmail.com</span>
+            </div>
+            <a href="mailto:signatusteam@gmail.com" class="btn btn--outline social-card__cta">
+              Escribirnos →
+            </a>
+          </article>
+        </div>
+
+        <!-- Community banner -->
+        <div class="community__banner reveal-up" data-delay="3">
+          <div class="community__banner-text">
+            <p class="community__banner-headline">¿Sos fan de Signatus?</p>
+            <p class="community__banner-sub">Seguínos en redes, mandanos un mensaje y formá parte de la comunidad. Siempre hay lugar para uno más.</p>
+          </div>
+          <a href="https://x.com/SignatusTeam" class="btn btn--accent" target="_blank" rel="noopener noreferrer">#GoSignatus</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ ROADMAP ═══════════════════════ -->
+    <section class="section roadmap" id="roadmap" aria-labelledby="roadmap-heading">
+      <div class="container">
+        <div class="section__header reveal-up">
+          <p class="section__label">Evolución & Visión</p>
+          <h2 class="section__title" id="roadmap-heading">El camino<br />de Signatus</h2>
+          <p class="section__subtitle">
+            <em>Nota: los hitos futuros representan la visión institucional del equipo, no compromisos formales.</em>
+          </p>
+        </div>
+
+        <div class="timeline" role="list" aria-label="Línea de tiempo de Signatus">
+
+          <div class="timeline__item timeline__item--done reveal-up" data-delay="0" role="listitem">
+            <div class="timeline__marker" aria-hidden="true">
+              <span class="timeline__dot"></span>
+              <span class="timeline__line"></span>
+            </div>
+            <div class="timeline__content">
+              <span class="timeline__date">Dic 2022</span>
+              <h3 class="timeline__title">Fundación</h3>
+              <p class="timeline__desc">Signatus se une a Twitter/X el 13 de diciembre de 2022, marcando el inicio oficial de la organización.</p>
+              <span class="timeline__status timeline__status--done">Completado</span>
+            </div>
+          </div>
+
+          <div class="timeline__item timeline__item--done reveal-up" data-delay="1" role="listitem">
+            <div class="timeline__marker" aria-hidden="true">
+              <span class="timeline__dot"></span>
+              <span class="timeline__line"></span>
+            </div>
+            <div class="timeline__content">
+              <span class="timeline__date">2023</span>
+              <h3 class="timeline__title">Primeros pasos competitivos</h3>
+              <p class="timeline__desc">Construcción de la base organizacional, armado del primer roster y primeras participaciones en la escena local de CS.</p>
+              <span class="timeline__status timeline__status--done">Completado</span>
+            </div>
+          </div>
+
+          <div class="timeline__item timeline__item--done reveal-up" data-delay="2" role="listitem">
+            <div class="timeline__marker" aria-hidden="true">
+              <span class="timeline__dot"></span>
+              <span class="timeline__line"></span>
+            </div>
+            <div class="timeline__content">
+              <span class="timeline__date">Jul 2024</span>
+              <h3 class="timeline__title">Proyecto Jalki</h3>
+              <p class="timeline__desc">Lanzamiento del Proyecto Jalki: convocatoria pionera para mujeres sin experiencia competitiva en CS2, abierta a toda Argentina y LATAM.</p>
+              <span class="timeline__status timeline__status--done">Lanzado</span>
+            </div>
+          </div>
+
+          <div class="timeline__item timeline__item--active reveal-up" data-delay="3" role="listitem">
+            <div class="timeline__marker" aria-hidden="true">
+              <span class="timeline__dot"></span>
+              <span class="timeline__line"></span>
+            </div>
+            <div class="timeline__content">
+              <span class="timeline__date">2025</span>
+              <h3 class="timeline__title">Consolidación regional</h3>
+              <p class="timeline__desc">Crecimiento en torneos locales y regionales, expansión de la comunidad y profundización del modelo organizacional.</p>
+              <span class="timeline__status timeline__status--active">En curso</span>
+            </div>
+          </div>
+
+          <div class="timeline__item timeline__item--future reveal-up" data-delay="4" role="listitem">
+            <div class="timeline__marker" aria-hidden="true">
+              <span class="timeline__dot"></span>
+              <span class="timeline__line"></span>
+            </div>
+            <div class="timeline__content">
+              <span class="timeline__date">2026</span>
+              <h3 class="timeline__title">Visión: primer sponsor</h3>
+              <p class="timeline__desc">Objetivo de conseguir el primer patrocinador formal y escalar la estructura del equipo a nivel semiprofesional.</p>
+              <span class="timeline__status timeline__status--future">Planificado</span>
+            </div>
+          </div>
+
+          <div class="timeline__item timeline__item--future reveal-up" data-delay="5" role="listitem">
+            <div class="timeline__marker" aria-hidden="true">
+              <span class="timeline__dot"></span>
+            </div>
+            <div class="timeline__content">
+              <span class="timeline__date">2027</span>
+              <h3 class="timeline__title">Visión: Buenos Aires Major</h3>
+              <p class="timeline__desc">Argentina será sede del primer CS2 Major. Signatus aspira a ser parte activa de ese momento histórico para el esport latinoamericano.</p>
+              <span class="timeline__status timeline__status--future">Horizonte</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ FAQ ═══════════════════════ -->
+    <section class="section faq" id="faq" aria-labelledby="faq-heading">
+      <div class="container faq__inner">
+        <div class="section__header reveal-up">
+          <p class="section__label">Preguntas frecuentes</p>
+          <h2 class="section__title" id="faq-heading">FAQ</h2>
+        </div>
+
+        <div class="faq__list" id="faqList" role="list">
+
+          <div class="faq__item reveal-up" data-delay="0" role="listitem">
+            <button class="faq__question" aria-expanded="false" aria-controls="faq1">
+              ¿Qué es Signatus?
+              <svg class="faq__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="faq__answer" id="faq1" hidden>
+              <p>Signatus es una organización de esports argentina fundada en diciembre de 2022. Nuestro enfoque principal es Counter-Strike 2, con proyección regional hacia toda Latinoamérica. Más allá de la competencia, construimos comunidad y apostamos por la inclusión en los esports.</p>
+            </div>
+          </div>
+
+          <div class="faq__item reveal-up" data-delay="1" role="listitem">
+            <button class="faq__question" aria-expanded="false" aria-controls="faq2">
+              ¿Cómo puedo unirme a Signatus o hacer tryouts?
+              <svg class="faq__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="faq__answer" id="faq2" hidden>
+              <p>La forma más directa es escribirnos a <a href="mailto:signatusteam@gmail.com">signatusteam@gmail.com</a> con tu perfil y motivaciones. También podés seguirnos en Twitter (<a href="https://x.com/SignatusTeam" target="_blank" rel="noopener">@SignatusTeam</a>) donde anunciamos aperturas de convocatoria cuando están disponibles.</p>
+            </div>
+          </div>
+
+          <div class="faq__item reveal-up" data-delay="2" role="listitem">
+            <button class="faq__question" aria-expanded="false" aria-controls="faq3">
+              ¿Qué es el Proyecto Jalki?
+              <svg class="faq__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="faq__answer" id="faq3" hidden>
+              <p>Proyecto Jalki es una iniciativa de Signatus lanzada en julio de 2024. Es una convocatoria abierta para chicas de Argentina y LATAM que quieran competir en CS2, independientemente de si tienen experiencia competitiva previa o no. El nombre "Jalki" hace referencia a la palabra en quechua que significa "frontera" — porque justamente eso buscamos romper.</p>
+            </div>
+          </div>
+
+          <div class="faq__item reveal-up" data-delay="3" role="listitem">
+            <button class="faq__question" aria-expanded="false" aria-controls="faq4">
+              ¿En qué torneos o ligas compite Signatus?
+              <svg class="faq__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="faq__answer" id="faq4" hidden>
+              <p>Signatus participa en la escena competitiva de CS2 de Argentina y LATAM. Para información actualizada sobre torneos y resultados, te recomendamos seguir nuestra cuenta de Twitter <a href="https://x.com/SignatusTeam" target="_blank" rel="noopener">@SignatusTeam</a> donde publicamos novedades en tiempo real.</p>
+            </div>
+          </div>
+
+          <div class="faq__item reveal-up" data-delay="4" role="listitem">
+            <button class="faq__question" aria-expanded="false" aria-controls="faq5">
+              ¿Cómo puedo sponsorear o colaborar con Signatus?
+              <svg class="faq__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="faq__answer" id="faq5" hidden>
+              <p>Nos interesan propuestas de sponsors, colaboraciones con marcas del mundo gamer y tech, y cualquier tipo de alianza que aporte valor a nuestra comunidad. Escribinos directamente a <a href="mailto:signatusteam@gmail.com">signatusteam@gmail.com</a> con el asunto "Propuesta comercial" y te respondemos a la brevedad.</p>
+            </div>
+          </div>
+
+          <div class="faq__item reveal-up" data-delay="5" role="listitem">
+            <button class="faq__question" aria-expanded="false" aria-controls="faq6">
+              ¿Solo hacen CS2 o planean expandirse a otros juegos?
+              <svg class="faq__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="faq__answer" id="faq6" hidden>
+              <p>Por el momento, nuestro foco está completamente en Counter-Strike 2. Creemos que la especialización nos permite hacer las cosas bien. Una eventual expansión a otros títulos es posible en el futuro, pero siempre priorizando la calidad sobre la cantidad.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ CONTACT ═══════════════════════ -->
+    <section class="section contact" id="contact" aria-labelledby="contact-heading">
+      <div class="container contact__inner">
+        <p class="section__label reveal-up">Contacto</p>
+        <h2 class="section__title reveal-up" data-delay="1" id="contact-heading">¿Hablamos?</h2>
+        <p class="contact__sub reveal-up" data-delay="2">
+          Sponsors, jugadores, medios o simplemente fans —
+          nos importa escuchar. Somos una organización joven
+          con mucho por construir.
+        </p>
+        <a href="mailto:signatusteam@gmail.com" class="contact__email reveal-up" data-delay="3">
+          signatusteam@gmail.com
+        </a>
+        <div class="contact__socials reveal-up" data-delay="4" aria-label="Redes sociales">
+          <a href="https://x.com/SignatusTeam" class="contact__social-link" target="_blank" rel="noopener noreferrer" aria-label="Twitter de Signatus">
+            Twitter / X
+          </a>
+          <span class="contact__social-sep" aria-hidden="true">·</span>
+          <a href="https://instagram.com/signatusteam" class="contact__social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Signatus">
+            Instagram
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container footer__inner">
+
+      <div class="footer__brand">
+        <a href="#hero" class="footer__logo" aria-label="Signatus — volver al inicio">
+          <span class="footer__logo-mark">S</span>ignatus
+        </a>
+        <p class="footer__tagline">Argentina compite. LATAM crece.</p>
+        <a href="https://x.com/SignatusTeam" class="footer__hashtag" target="_blank" rel="noopener noreferrer">#GoSignatus</a>
+      </div>
+
+      <nav class="footer__nav" aria-label="Navegación del pie de página">
+        <div class="footer__nav-col">
+          <p class="footer__nav-label">Organización</p>
+          <a href="#about" class="footer__nav-link">Nosotros</a>
+          <a href="#proposition" class="footer__nav-link">Propuesta</a>
+          <a href="#strengths" class="footer__nav-link">Fortalezas</a>
+        </div>
+        <div class="footer__nav-col">
+          <p class="footer__nav-label">Iniciativas</p>
+          <a href="#jalki" class="footer__nav-link">Proyecto Jalki</a>
+          <a href="#community" class="footer__nav-link">Comunidad</a>
+          <a href="#roadmap" class="footer__nav-link">Roadmap</a>
+        </div>
+        <div class="footer__nav-col">
+          <p class="footer__nav-label">Contacto</p>
+          <a href="mailto:signatusteam@gmail.com" class="footer__nav-link">Email</a>
+          <a href="https://x.com/SignatusTeam" class="footer__nav-link" target="_blank" rel="noopener noreferrer">Twitter / X</a>
+          <a href="https://instagram.com/signatusteam" class="footer__nav-link" target="_blank" rel="noopener noreferrer">Instagram</a>
+        </div>
+      </nav>
+
+    </div>
+
+    <div class="footer__bottom">
+      <div class="container footer__bottom-inner">
+        <p class="footer__copy">© 2024 Signatus. Todos los derechos reservados.</p>
+        <p class="footer__region">Buenos Aires, Argentina 🇦🇷</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/utils.js"></script>
+  <script src="js/cursor.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/hero-canvas.js"></script>
+  <script src="js/ticker.js"></script>
+  <script src="js/scroll-reveal.js"></script>
+  <script src="js/faq.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

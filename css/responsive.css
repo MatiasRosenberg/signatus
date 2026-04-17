@@ -1,0 +1,147 @@
+/* ═══════════════════════════════════════
+   responsive.css — Breakpoints
+   Signatus
+   ═══════════════════════════════════════ */
+
+/* ─── Tablet: ≤ 1024px ─── */
+
+@media (max-width: 1024px) {
+
+  .about__grid {
+    grid-template-columns: 1fr;
+    gap: var(--sp-12);
+  }
+
+  .proposition__grid {
+    grid-template-columns: 1fr;
+    gap: 1px;
+  }
+
+  .strengths__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .jalki__inner {
+    grid-template-columns: 1fr;
+    gap: var(--sp-12);
+  }
+
+  .community__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .faq__inner {
+    grid-template-columns: 1fr;
+    gap: var(--sp-10);
+  }
+
+  .faq__inner .section__header {
+    position: static;
+  }
+
+  .footer__inner {
+    grid-template-columns: 1fr;
+    gap: var(--sp-10);
+  }
+
+  .footer__nav {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+}
+
+/* ─── Mobile: ≤ 768px ─── */
+
+@media (max-width: 768px) {
+
+  /* Hide desktop nav, show burger */
+  .nav__links,
+  .nav__cta { display: none; }
+
+  .nav__burger {
+    display: flex;
+  }
+
+  .nav__mobile {
+    display: flex;
+  }
+
+  /* Show mobile line break */
+  .break-mobile { display: inline; }
+
+  /* Hero adjustments */
+  .hero__stat-divider { display: none; }
+  .hero__stats { gap: var(--sp-6); }
+
+  /* Community */
+  .community__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .community__banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sp-6);
+  }
+
+  /* Footer */
+  .footer__nav {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-8);
+  }
+
+  .footer__bottom-inner {
+    flex-direction: column;
+    gap: var(--sp-2);
+    text-align: center;
+  }
+
+  /* FAQ */
+  .faq__question {
+    font-size: var(--text-sm);
+    padding: var(--sp-4) var(--sp-4);
+  }
+
+  .faq__answer {
+    padding: 0 var(--sp-4) var(--sp-4);
+  }
+
+  /* Timeline */
+  .timeline__item {
+    gap: var(--sp-4);
+  }
+}
+
+/* ─── Small mobile: ≤ 480px ─── */
+
+@media (max-width: 480px) {
+
+  .hero__actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero__actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .footer__nav {
+    grid-template-columns: 1fr;
+    gap: var(--sp-6);
+  }
+
+  .community__banner .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+}
+
+/* ─── Touch devices: disable custom cursor ─── */
+
+@media (hover: none) and (pointer: coarse) {
+  body { cursor: auto; }
+  .cursor, .cursor-trail { display: none; }
+  .btn, .nav__link { cursor: pointer; }
+}
