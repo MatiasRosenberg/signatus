@@ -25,8 +25,8 @@
   <meta name="twitter:description" content="Organización de esports argentina. CS2, comunidad y apertura para toda LATAM. #GoSignatus" />
 
   <!-- Favicon -->
-  <link rel="icon" type="image/jpeg" href="Imagenes/Zya1pBAW_400x400.jpg" />
-  <link rel="apple-touch-icon" href="Imagenes/Zya1pBAW_400x400.jpg" />
+  <link rel="icon" type="image/png" href="Imagenes/emotesignatus.png" />
+  <link rel="apple-touch-icon" href="Imagenes/emotesignatus.png" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -43,6 +43,15 @@
 </head>
 <body>
 
+  <!-- ═══════════════════════ INTRO VIDEO ═══════════════════════ -->
+  <div id="introOverlay" class="intro-overlay" aria-hidden="true">
+    <video id="introVideo" autoplay muted playsinline disablePictureInPicture>
+      <source src="Imagenes/Transicion.mp4" type="video/mp4">
+      <source src="Imagenes/Transicion.mov" type="video/quicktime">
+    </video>
+    <p class="intro-skip">Click para saltar</p>
+  </div>
+
   <!-- ═══════════════════════ CURSOR ═══════════════════════ -->
   <div class="cursor" id="cursor" aria-hidden="true"></div>
   <div class="cursor-trail" id="cursorTrail" aria-hidden="true"></div>
@@ -51,7 +60,7 @@
   <header class="nav" id="nav" role="banner">
     <div class="nav__inner container">
       <a href="#hero" class="nav__logo" aria-label="Signatus — inicio">
-        <img src="Imagenes/Zya1pBAW_400x400.jpg" alt="" class="nav__logo-wolf" aria-hidden="true">
+        <img src="Imagenes/emotesignatus.png" alt="" class="nav__logo-wolf" aria-hidden="true">
         <span class="nav__logo-mark">S</span>
         <span class="nav__logo-text">ignatus</span>
       </a>
@@ -91,7 +100,7 @@
       <div class="hero__bg" aria-hidden="true">
         <canvas class="hero__canvas" id="heroCanvas"></canvas>
         <div class="hero__grid"></div>
-        <img src="Imagenes/Zya1pBAW_400x400.jpg" alt="" class="hero__wolf-mark">
+        <img src="Imagenes/emotesignatus.png" alt="" class="hero__wolf-mark">
         <div class="hero__vignette"></div>
       </div>
 
@@ -676,7 +685,7 @@
 
       <div class="footer__brand">
         <a href="#hero" class="footer__logo" aria-label="Signatus — volver al inicio">
-          <img src="Imagenes/Zya1pBAW_400x400.jpg" alt="" class="footer__logo-wolf" aria-hidden="true">
+          <img src="Imagenes/emotesignatus.png" alt="" class="footer__logo-wolf" aria-hidden="true">
           <span class="footer__logo-mark">S</span>ignatus
         </a>
         <p class="footer__tagline">Argentina compite. LATAM crece.</p>
@@ -716,6 +725,7 @@
 
   <!-- Scripts -->
   <script src="js/utils.js"></script>
+  <script src="js/intro.js"></script>
   <script src="js/cursor.js"></script>
   <script src="js/nav.js"></script>
   <script src="js/hero-canvas.js"></script>

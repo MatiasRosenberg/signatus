@@ -28,22 +28,36 @@
   const allItems = [...items, ...items];
 
   const fragment = document.createDocumentFragment();
-
   allItems.forEach(text => {
     const span = document.createElement('span');
     span.className = 'ticker__item';
     span.textContent = text;
     fragment.appendChild(span);
   });
-
   track.appendChild(fragment);
 
+  // JS-based animation (bypasses prefers-reduced-motion CSS overrides)
+  let pos = 0;
+  let paused = false;
+  let rafId;
+
+  function animate() {
+    if (!paused) {
+      pos -= 0.6;
+      const halfWidth = track.scrollWidth / 2;
+      if (pos <= -halfWidth) pos = 0;
+      track.style.transform = `translateX(${pos}px)`;
+    }
+    rafId = requestAnimationFrame(animate);
+  }
+
+  // Wait for layout so scrollWidth is correct
+  requestAnimationFrame(() => {
+    requestAnimationFrame(animate);
+  });
+
   // Pause on hover
-  track.parentElement.addEventListener('mouseenter', () => {
-    track.style.animationPlayState = 'paused';
-  });
-  track.parentElement.addEventListener('mouseleave', () => {
-    track.style.animationPlayState = 'running';
-  });
+  track.parentElement.addEventListener('mouseenter', () => { paused = true; });
+  track.parentElement.addEventListener('mouseleave', () => { paused = false; });
 
 })();
