@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tienda — Signatus</title>
+  <meta name="description" content="Indumentaria oficial de Signatus. Representá al equipo." />
+  <link rel="icon" type="image/png" href="Imagenes/emotesignatus.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/tienda.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="tnav">
+    <div class="container tnav__inner">
+      <a href="index.html" class="tnav__logo">
+        <img src="Imagenes/emotesignatus.png" alt="" class="tnav__wolf">
+        <span class="tnav__logo-mark">S</span><span>ignatus</span>
+      </a>
+      <span class="tnav__label">TIENDA OFICIAL</span>
+      <button class="tnav__cart-btn" id="cartBtn" aria-label="Abrir carrito">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+        </svg>
+        <span class="cart-badge" id="cartBadge" style="display:none">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="tienda-hero">
+    <div class="container">
+      <p class="tienda-hero__label">Indumentaria oficial</p>
+      <h1 class="tienda-hero__title">VESTUARIO <span>SIGNATUS</span></h1>
+      <p class="tienda-hero__sub">Representá al equipo. #GoSignatus</p>
+    </div>
+    <div class="tienda-hero__wolf" aria-hidden="true">
+      <img src="Imagenes/emotesignatus.png" alt="">
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="tienda-products">
+    <div class="container">
+      <div class="products-grid" id="productsGrid">
+        <div class="products-loading" id="productsLoading">
+          <div class="spinner"></div>
+          <p>Cargando productos...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CART OVERLAY -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+
+  <!-- CART SIDEBAR -->
+  <aside class="cart-sidebar" id="cartSidebar" aria-label="Carrito de compras">
+    <div class="cart-sidebar__header">
+      <h2>CARRITO</h2>
+      <button class="cart-sidebar__close" id="cartClose" aria-label="Cerrar carrito">×</button>
+    </div>
+    <div class="cart-sidebar__items" id="cartItems">
+      <p class="cart-empty" id="cartEmpty">Tu carrito está vacío.</p>
+    </div>
+    <div class="cart-sidebar__footer" id="cartFooter" style="display:none">
+      <div class="cart-total">
+        <span>TOTAL</span>
+        <span class="cart-total__value" id="cartTotal">$0</span>
+      </div>
+      <button class="btn btn--accent btn--full" id="checkoutBtn">IR AL CHECKOUT →</button>
+    </div>
+  </aside>
+
+  <!-- CHECKOUT MODAL -->
+  <div class="modal-overlay" id="checkoutOverlay" style="display:none">
+    <div class="checkout-modal" id="checkoutModal">
+      <button class="modal-close" id="checkoutClose" aria-label="Cerrar">×</button>
+
+      <div id="checkoutFormWrap">
+        <h2 class="checkout-modal__title">COMPLETAR PEDIDO</h2>
+        <div class="checkout-summary" id="checkoutSummary"></div>
+        <form class="checkout-form" id="checkoutForm" novalidate>
+          <div class="form-group">
+            <label>Nombre completo *</label>
+            <input type="text" name="buyer_name" placeholder="Juan Pérez" required />
+          </div>
+          <div class="form-group">
+            <label>Email *</label>
+            <input type="email" name="buyer_email" placeholder="juan@email.com" required />
+          </div>
+          <div class="form-group">
+            <label>Teléfono</label>
+            <input type="tel" name="buyer_phone" placeholder="+54 11 1234-5678" />
+          </div>
+          <div class="form-group">
+            <label>Dirección de envío</label>
+            <textarea name="buyer_address" rows="2" placeholder="Calle, número, ciudad, provincia"></textarea>
+          </div>
+          <p class="checkout-note">⚡ Te contactaremos por email para coordinar el pago.</p>
+          <button type="submit" class="btn btn--accent btn--full btn--lg">CONFIRMAR PEDIDO →</button>
+        </form>
+      </div>
+
+      <div class="checkout-success" id="checkoutSuccess" style="display:none">
+        <div class="success-check">✓</div>
+        <h2>¡PEDIDO RECIBIDO!</h2>
+        <p>Gracias por tu compra. Te vamos a contactar a tu email para coordinar el pago y el envío.</p>
+        <p class="success-tag">#GoSignatus</p>
+        <button class="btn btn--ghost btn--full" id="successClose">CERRAR</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/tienda.js"></script>
+</body>
+</html>

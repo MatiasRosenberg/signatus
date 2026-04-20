@@ -160,6 +160,20 @@
 
 .nav__cta { margin-left: var(--sp-4); }
 
+.nav__link--tienda {
+  color: var(--clr-accent) !important;
+  border: 1px solid var(--clr-accent-mid);
+  padding: 0.25rem 0.75rem;
+}
+.nav__link--tienda:hover {
+  background: var(--clr-accent-dim);
+}
+.nav__link--tienda::after { display: none; }
+
+.nav__mobile-tienda {
+  color: var(--clr-accent) !important;
+}
+
 .nav__burger {
   display: none;
   flex-direction: column;

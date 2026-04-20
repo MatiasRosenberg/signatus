@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — Signatus</title>
+  <link rel="icon" type="image/png" href="Imagenes/emotesignatus.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+
+  <!-- LOGIN -->
+  <div class="login-screen" id="loginScreen">
+    <div class="login-box">
+      <div class="login-logo">
+        <img src="Imagenes/emotesignatus.png" alt="">
+        <span><span class="accent">S</span>ignatus</span>
+      </div>
+      <p class="login-label">PANEL DE ADMINISTRACIÓN</p>
+      <form class="login-form" id="loginForm" novalidate>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="loginEmail" placeholder="admin@signatus.gg" required />
+        </div>
+        <div class="form-group">
+          <label>Contraseña</label>
+          <input type="password" id="loginPassword" placeholder="••••••••" required />
+        </div>
+        <p class="login-error" id="loginError" style="display:none"></p>
+        <button type="submit" class="btn btn--accent btn--full">INGRESAR →</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div class="admin-layout" id="adminLayout" style="display:none">
+
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar__brand">
+        <img src="Imagenes/emotesignatus.png" alt="" class="admin-sidebar__wolf">
+        <span><span class="accent">S</span>ignatus</span>
+      </div>
+      <nav class="admin-nav">
+        <button class="admin-nav__item is-active" data-tab="orders">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="2"/><path d="M9 12h6M9 16h4"/></svg>
+          Pedidos
+          <span class="admin-nav__badge" id="pendingBadge" style="display:none">0</span>
+        </button>
+        <button class="admin-nav__item" data-tab="products">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+          Productos
+        </button>
+      </nav>
+      <button class="admin-logout" id="logoutBtn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Cerrar sesión
+      </button>
+    </aside>
+
+    <!-- Main -->
+    <main class="admin-main">
+
+      <!-- Orders Tab -->
+      <div class="admin-tab" id="tab-orders">
+        <div class="admin-tab__header">
+          <h1>PEDIDOS</h1>
+          <div class="filter-group" id="orderFilters">
+            <button class="filter-btn is-active" data-status="all">Todos</button>
+            <button class="filter-btn" data-status="pendiente">Pendiente</button>
+            <button class="filter-btn" data-status="confirmado">Confirmado</button>
+            <button class="filter-btn" data-status="en preparación">En preparación</button>
+            <button class="filter-btn" data-status="enviado">Enviado</button>
+            <button class="filter-btn" data-status="entregado">Entregado</button>
+            <button class="filter-btn" data-status="cancelado">Cancelado</button>
+          </div>
+        </div>
+        <div class="admin-tab__content">
+          <div class="table-wrap">
+            <table class="admin-table" id="ordersTable">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Comprador</th>
+                  <th>Artículos</th>
+                  <th>Total</th>
+                  <th>Estado</th>
+                  <th>Fecha</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="ordersBody">
+                <tr><td colspan="7" class="table-loading">Cargando pedidos...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Products Tab -->
+      <div class="admin-tab" id="tab-products" style="display:none">
+        <div class="admin-tab__header">
+          <h1>PRODUCTOS</h1>
+          <button class="btn btn--accent" id="addProductBtn">+ AGREGAR PRODUCTO</button>
+        </div>
+        <div class="admin-tab__content">
+          <div class="table-wrap">
+            <table class="admin-table" id="productsTable">
+              <thead>
+                <tr>
+                  <th>Foto</th>
+                  <th>Nombre</th>
+                  <th>Precio</th>
+                  <th>Stock</th>
+                  <th>Activo</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="productsBody">
+                <tr><td colspan="6" class="table-loading">Cargando productos...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- PRODUCT MODAL -->
+  <div class="modal-overlay" id="productModalOverlay" style="display:none">
+    <div class="admin-modal" id="productModal">
+      <button class="modal-close" id="productModalClose">×</button>
+      <h2 class="admin-modal__title" id="productModalTitle">AGREGAR PRODUCTO</h2>
+      <form class="admin-form" id="productForm" novalidate>
+        <input type="hidden" id="productId" />
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nombre *</label>
+            <input type="text" id="productName" placeholder="Remera Signatus 2025" required />
+          </div>
+          <div class="form-group">
+            <label>Precio (ARS) *</label>
+            <input type="number" id="productPrice" placeholder="15000" min="0" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Descripción</label>
+          <textarea id="productDesc" rows="2" placeholder="100% algodón, corte regular..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>URL de imagen</label>
+          <input type="url" id="productImage" placeholder="https://..." />
+        </div>
+        <div class="form-group">
+          <label>Stock por talle</label>
+          <div class="stock-grid">
+            <div class="stock-item">
+              <label>XS</label>
+              <input type="number" id="stock-XS" min="0" value="0" />
+            </div>
+            <div class="stock-item">
+              <label>S</label>
+              <input type="number" id="stock-S" min="0" value="0" />
+            </div>
+            <div class="stock-item">
+              <label>M</label>
+              <input type="number" id="stock-M" min="0" value="0" />
+            </div>
+            <div class="stock-item">
+              <label>L</label>
+              <input type="number" id="stock-L" min="0" value="0" />
+            </div>
+            <div class="stock-item">
+              <label>XL</label>
+              <input type="number" id="stock-XL" min="0" value="0" />
+            </div>
+            <div class="stock-item">
+              <label>XXL</label>
+              <input type="number" id="stock-XXL" min="0" value="0" />
+            </div>
+          </div>
+        </div>
+        <div class="form-group form-group--inline">
+          <label class="toggle-label">
+            <input type="checkbox" id="productActive" checked />
+            <span class="toggle-track"></span>
+            Producto activo (visible en tienda)
+          </label>
+        </div>
+        <div class="admin-form__actions">
+          <button type="button" class="btn btn--ghost" id="cancelProductBtn">CANCELAR</button>
+          <button type="submit" class="btn btn--accent" id="saveProductBtn">GUARDAR PRODUCTO</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ORDER DETAIL MODAL -->
+  <div class="modal-overlay" id="orderModalOverlay" style="display:none">
+    <div class="admin-modal" id="orderModal">
+      <button class="modal-close" id="orderModalClose">×</button>
+      <h2 class="admin-modal__title">DETALLE DEL PEDIDO</h2>
+      <div id="orderDetail"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
