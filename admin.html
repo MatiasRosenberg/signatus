@@ -154,8 +154,25 @@
           <textarea id="productDesc" rows="2" placeholder="100% algodón, corte regular..."></textarea>
         </div>
         <div class="form-group">
-          <label>URL de imagen</label>
-          <input type="url" id="productImage" placeholder="https://..." />
+          <label>Imágenes del producto</label>
+          <div class="image-gallery" id="imageGallery"></div>
+          <p class="form-hint">La primera imagen será la principal. Arrastrá para reordenar.</p>
+          <input type="file" id="productImageFile" accept="image/*" multiple style="display:none" />
+        </div>
+
+        <div class="form-group">
+          <label>Modelo 3D (opcional)</label>
+          <div class="model-upload" id="modelUpload">
+            <div class="model-upload__info" id="modelUploadInfo">
+              <span class="model-upload__empty">Sin modelo 3D</span>
+            </div>
+            <div class="model-upload__actions">
+              <button type="button" class="btn btn--ghost btn--sm" id="btnUploadModel">Subir .glb</button>
+              <button type="button" class="btn btn--ghost btn--sm btn--danger-ghost" id="btnRemoveModel" style="display:none">Quitar</button>
+            </div>
+          </div>
+          <input type="file" id="productModelFile" accept=".glb,.gltf,model/gltf-binary" style="display:none" />
+          <p class="form-hint">Si subís un .glb, el producto se mostrará con giro libre 3D en vez de las imágenes.</p>
         </div>
         <div class="form-group">
           <label>Stock por talle</label>

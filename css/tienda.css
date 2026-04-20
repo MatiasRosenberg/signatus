@@ -195,10 +195,10 @@ body {
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* ─── PRODUCT CARD (3D) ─── */
+/* ─── PRODUCT CARD (3D flip) ─── */
 
 .product-scene {
-  perspective: 900px;
+  perspective: 1400px;
   height: 500px;
 }
 
@@ -210,13 +210,8 @@ body {
   transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.product-card.is-tilt-active {
-  transition: transform 0.08s linear;
-}
-
 .product-card.is-flipped {
-  transform: rotateY(180deg) !important;
-  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  transform: rotateY(180deg);
 }
 
 .product-card__face {
@@ -229,6 +224,7 @@ body {
   border: 1px solid var(--clr-border);
   display: flex;
   flex-direction: column;
+  transition: border-color var(--dur-base);
 }
 .product-card__face:hover {
   border-color: var(--clr-border-md);
@@ -238,20 +234,180 @@ body {
   transform: rotateY(180deg);
 }
 
-/* Card front */
+/* Card front — image area (360° spin container) */
 .product-card__image {
   flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
   background: var(--clr-surface-2);
   position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-y;
 }
-.product-card__image img {
+
+.product-card__image.is-spinnable {
+  cursor: grab;
+}
+.product-card__image.is-spinnable.is-spinning {
+  cursor: grabbing;
+}
+
+.product-image-3d {
+  position: absolute;
+  inset: 0;
+}
+
+.product-image-3d__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.product-image-3d__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.product-image-3d__slide.is-active {
+  opacity: 1;
+}
+
+.product-image-3d__slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+/* 3D model viewer */
+.product-card__image.has-3d {
+  cursor: grab;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(229,53,53,0.08), transparent 60%),
+    var(--clr-surface-2);
+  touch-action: none;
+}
+.product-card__image.has-3d:active { cursor: grabbing; }
+
+.product-3d-viewer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.product-3d-viewer canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  outline: none;
+}
+
+.viewer-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.viewer-error {
+  background: rgba(229,53,53,0.1);
+  border: 1px solid rgba(229,53,53,0.3);
+  color: var(--clr-accent);
+  padding: var(--sp-3) var(--sp-4);
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  text-align: center;
+  max-width: 80%;
+  line-height: 1.6;
+}
+.viewer-error small {
+  display: block;
+  margin-top: var(--sp-1);
+  color: var(--clr-text-3);
+  letter-spacing: 0.04em;
+  font-weight: 300;
+}
+
+.spin-hint--3d {
+  right: auto;
+  left: 50%;
+  top: auto;
+  bottom: var(--sp-3);
+  transform: translateX(-50%) translateY(4px);
+}
+.product-card__image.has-3d:hover .spin-hint--3d {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Spin hint (appears when hovering, fades out after user interacts) */
+.spin-hint {
+  position: absolute;
+  top: var(--sp-3);
+  right: var(--sp-3);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity var(--dur-base), transform var(--dur-base);
+  pointer-events: none;
+  z-index: 2;
+}
+.product-card__image:hover .spin-hint {
+  opacity: 1;
+  transform: translateY(0);
+}
+.product-card__image.has-interacted .spin-hint {
+  opacity: 0 !important;
+}
+
+.spin-hint svg {
+  flex-shrink: 0;
+  color: var(--clr-accent);
+}
+
+/* Thin progress bar at bottom showing current frame */
+.spin-progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  display: flex;
+  gap: 2px;
+  padding: 0 var(--sp-2) var(--sp-2);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.spin-progress__tick {
+  flex: 1;
+  height: 2px;
+  background: rgba(255,255,255,0.15);
+  transition: background var(--dur-fast);
+}
+.spin-progress__tick.is-active {
+  background: var(--clr-accent);
 }
 
 .product-card__placeholder {

@@ -32,11 +32,17 @@
     document.getElementById('adminLayout').style.display  = 'none';
   }
 
+  let _dashboardReady = false;
+
   function showDashboard() {
     document.getElementById('loginScreen').style.display  = 'none';
     document.getElementById('adminLayout').style.display  = 'flex';
     loadOrders();
     loadProducts();
+
+    if (_dashboardReady) return;
+    _dashboardReady = true;
+
     setupTabs();
     setupProductModal();
     setupOrderModal();
@@ -271,6 +277,12 @@
 
   // ─── Product Modal ───────────────────────────────────────
 
+  // Cada item: { url: string|null, file: File|null, preview: string }
+  let _productImages = [];
+  let _dragFromIndex = null;
+  // Modelo 3D: { url: string|null, file: File|null, name: string }
+  let _productModel = { url: null, file: null, name: '' };
+
   function setupProductModal() {
     document.getElementById('addProductBtn').addEventListener('click', () => openProductModal(null));
     document.getElementById('productModalClose').addEventListener('click', closeProductModal);
@@ -279,16 +291,138 @@
       if (e.target === e.currentTarget) closeProductModal();
     });
     document.getElementById('productForm').addEventListener('submit', handleSaveProduct);
+
+    document.getElementById('productImageFile').addEventListener('change', (e) => {
+      const files = Array.from(e.target.files || []);
+      files.forEach(file => {
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          _productImages.push({ url: null, file, preview: ev.target.result });
+          renderImageGallery();
+        };
+        reader.readAsDataURL(file);
+      });
+      e.target.value = '';
+    });
+
+    document.getElementById('btnUploadModel').addEventListener('click', () => {
+      document.getElementById('productModelFile').click();
+    });
+
+    document.getElementById('productModelFile').addEventListener('change', (e) => {
+      const file = e.target.files?.[0];
+      if (!file) return;
+      _productModel = { url: null, file, name: file.name };
+      renderModelInfo();
+      e.target.value = '';
+    });
+
+    document.getElementById('btnRemoveModel').addEventListener('click', () => {
+      _productModel = { url: null, file: null, name: '' };
+      renderModelInfo();
+    });
+  }
+
+  function renderModelInfo() {
+    const info   = document.getElementById('modelUploadInfo');
+    const remove = document.getElementById('btnRemoveModel');
+    const hasModel = !!(_productModel.url || _productModel.file);
+    if (hasModel) {
+      const label = _productModel.file
+        ? `Nuevo: ${_productModel.name}`
+        : `Modelo cargado`;
+      info.innerHTML = `
+        <span class="model-upload__badge">3D</span>
+        <span class="model-upload__name">${label}</span>
+      `;
+      remove.style.display = 'inline-flex';
+    } else {
+      info.innerHTML = '<span class="model-upload__empty">Sin modelo 3D</span>';
+      remove.style.display = 'none';
+    }
+  }
+
+  function renderImageGallery() {
+    const gallery = document.getElementById('imageGallery');
+    const tiles = _productImages.map((img, i) => `
+      <div class="image-tile" draggable="true" data-idx="${i}">
+        <img src="${img.preview}" alt="" />
+        ${i === 0 ? '<span class="image-tile__badge">Principal</span>' : ''}
+        <button type="button" class="image-tile__remove" data-remove="${i}" title="Quitar">×</button>
+      </div>
+    `).join('');
+
+    gallery.innerHTML = tiles + `
+      <button type="button" class="image-add-tile" id="btnAddImage">
+        <span class="image-add-tile__plus">+</span>
+        <span class="image-add-tile__label">Agregar imagen</span>
+      </button>
+    `;
+
+    document.getElementById('btnAddImage').addEventListener('click', () => {
+      document.getElementById('productImageFile').click();
+    });
+
+    gallery.querySelectorAll('[data-remove]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const idx = parseInt(btn.dataset.remove);
+        _productImages.splice(idx, 1);
+        renderImageGallery();
+      });
+    });
+
+    gallery.querySelectorAll('.image-tile').forEach(tile => {
+      tile.addEventListener('dragstart', (e) => {
+        _dragFromIndex = parseInt(tile.dataset.idx);
+        tile.classList.add('is-dragging');
+      });
+      tile.addEventListener('dragend', () => {
+        tile.classList.remove('is-dragging');
+        _dragFromIndex = null;
+      });
+      tile.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        tile.classList.add('is-drag-over');
+      });
+      tile.addEventListener('dragleave', () => {
+        tile.classList.remove('is-drag-over');
+      });
+      tile.addEventListener('drop', (e) => {
+        e.preventDefault();
+        tile.classList.remove('is-drag-over');
+        const to = parseInt(tile.dataset.idx);
+        if (_dragFromIndex === null || _dragFromIndex === to) return;
+        const [moved] = _productImages.splice(_dragFromIndex, 1);
+        _productImages.splice(to, 0, moved);
+        renderImageGallery();
+      });
+    });
   }
 
   function openProductModal(product) {
     const isEdit = !!product;
+    document.getElementById('productImageFile').value = '';
+
+    const existing = [];
+    if (Array.isArray(product?.images) && product.images.length) {
+      product.images.forEach(url => existing.push({ url, file: null, preview: url }));
+    } else if (product?.image_url) {
+      existing.push({ url: product.image_url, file: null, preview: product.image_url });
+    }
+    _productImages = existing;
+    renderImageGallery();
+
+    _productModel = product?.model_url
+      ? { url: product.model_url, file: null, name: 'Modelo existente' }
+      : { url: null, file: null, name: '' };
+    renderModelInfo();
+
     document.getElementById('productModalTitle').textContent = isEdit ? 'EDITAR PRODUCTO' : 'AGREGAR PRODUCTO';
     document.getElementById('productId').value    = product?.id    || '';
     document.getElementById('productName').value  = product?.name  || '';
     document.getElementById('productPrice').value = product?.price || '';
     document.getElementById('productDesc').value  = product?.description || '';
-    document.getElementById('productImage').value = product?.image_url   || '';
     document.getElementById('productActive').checked = product?.active ?? true;
 
     const stock = product?.stock || {};
@@ -301,6 +435,12 @@
   }
 
   function closeProductModal() {
+    _productImages = [];
+    _productModel = { url: null, file: null, name: '' };
+    document.getElementById('productImageFile').value = '';
+    document.getElementById('productModelFile').value = '';
+    document.getElementById('imageGallery').innerHTML = '';
+    renderModelInfo();
     document.getElementById('productModalOverlay').style.display = 'none';
     document.getElementById('productForm').reset();
   }
@@ -319,17 +459,65 @@
       stock[s] = val;
     });
 
+    btn.textContent = 'GUARDANDO...';
+    btn.disabled = true;
+
+    const finalUrls = [];
+    for (const img of _productImages) {
+      if (img.url && !img.file) {
+        finalUrls.push(img.url);
+        continue;
+      }
+      const ext      = img.file.name.split('.').pop();
+      const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+      const { data: uploadData, error: uploadError } = await sb.storage
+        .from('product-images')
+        .upload(fileName, img.file, { upsert: false });
+
+      if (uploadError) {
+        alert('Error al subir la imagen: ' + uploadError.message);
+        btn.textContent = 'GUARDAR PRODUCTO';
+        btn.disabled = false;
+        return;
+      }
+
+      const { data: urlData } = sb.storage
+        .from('product-images')
+        .getPublicUrl(uploadData.path);
+      finalUrls.push(urlData.publicUrl);
+    }
+
+    let modelUrl = _productModel.url || null;
+    if (_productModel.file) {
+      const ext      = _productModel.file.name.split('.').pop();
+      const fileName = `models/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+      const { data: uploadData, error: uploadError } = await sb.storage
+        .from('product-images')
+        .upload(fileName, _productModel.file, { upsert: false, contentType: 'model/gltf-binary' });
+
+      if (uploadError) {
+        alert('Error al subir el modelo 3D: ' + uploadError.message);
+        btn.textContent = 'GUARDAR PRODUCTO';
+        btn.disabled = false;
+        return;
+      }
+
+      const { data: urlData } = sb.storage
+        .from('product-images')
+        .getPublicUrl(uploadData.path);
+      modelUrl = urlData.publicUrl;
+    }
+
     const payload = {
       name,
       price,
       description: document.getElementById('productDesc').value.trim(),
-      image_url:   document.getElementById('productImage').value.trim(),
+      image_url:   finalUrls[0] || null,
+      images:      finalUrls,
+      model_url:   modelUrl,
       active:      document.getElementById('productActive').checked,
       stock
     };
-
-    btn.textContent = 'GUARDANDO...';
-    btn.disabled = true;
 
     const id = document.getElementById('productId').value;
     let error;
